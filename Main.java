@@ -1,8 +1,15 @@
+import java.io.File;
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    static int contHistorico = 0;
+
+    public static void main(String[] args) throws InterruptedException, IOException {
+
 
         int conta=0;
+
 
         Sensor S1= new Sensor();
 
@@ -17,15 +24,14 @@ public class Main {
 
         while(true){
             Thread.sleep(600);
-
-
             if(v1.ingresoEntrada1()==v1.ingresoSalida1()){
                 conta=conta;
             }else{
-                if(S1.entrada(v1.ingresoEntrada1(),v1.ingresoSalida1())==true){
+                if(S1.entrada(v1.ingresoEntrada1(), v1.ingresoSalida1())){
                     conta++;
+                    contHistorico++;
                 }else{
-                    if(S1.salida(v1.ingresoEntrada1(), v1.ingresoSalida1())==true){
+                    if(S1.salida(v1.ingresoEntrada1(), v1.ingresoSalida1())){
                         conta--;
                     }
                 }
@@ -38,10 +44,10 @@ public class Main {
             if(v1.ingresoEntrada2()==v1.ingresoSalida2()){
                 conta=conta;
             }else{
-                if(S1.entrada(v1.ingresoEntrada2(),v1.ingresoSalida2())==true){
+                if(S1.entrada(v1.ingresoEntrada2(), v1.ingresoSalida2())){
                     conta++;
                 }else{
-                    if(S1.salida(v1.ingresoEntrada2(), v1.ingresoSalida2())==true){
+                    if(S1.salida(v1.ingresoEntrada2(), v1.ingresoSalida2())){
                         conta--;
                     }
                 }
