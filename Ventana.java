@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Ventana extends JFrame {
 
@@ -18,6 +19,7 @@ public class Ventana extends JFrame {
     protected JButton salida1= new JButton("Salida");
     protected JButton entrada2=new JButton("Entrada");
     protected JButton salida2=new JButton("Salida");
+    protected JButton guardar = new JButton("Guardar");
 
     public Ventana() {
 
@@ -102,6 +104,27 @@ public class Ventana extends JFrame {
         salida2.setBackground(new Color(8,28,83));
         salida2.setForeground(Color.WHITE);
         panel.add(salida2);
+
+
+        guardar.setBounds(470, 575, 150, 50);
+        guardar.setBackground(new Color(8, 28, 83));
+        guardar.setForeground(Color.white);
+        panel.add(guardar);
+        ActionListener accion = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Persistencia.anadirTexto();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        };
+        guardar.addActionListener(accion);
+    }
+
+    protected void guardarInfo() throws IOException {
+
     }
 
     protected int ingresoEntrada1(){
@@ -169,12 +192,10 @@ public class Ventana extends JFrame {
         if(conta<50){
             indicador.setBackground(Color.GREEN);
         }else{
-            if(50<=conta && conta<80){
+            if(conta<80){
                 indicador.setBackground(Color.orange);
             }else{
-                if(conta>=80){
-                    indicador.setBackground(Color.red);
-                }
+                indicador.setBackground(Color.red);
             }
         }
     }
